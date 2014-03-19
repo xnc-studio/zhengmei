@@ -37,7 +37,26 @@ function crawl_html($link){
 	return $html;
 }
 function crawl_html_proxy($link){
-	$html=file_get_contents($link);
+	require_once('./class/Curl.class.php');
+  
+	//使用代理  
+	$setopt = array('proxy'=>true,'proxyHost'=>'127.0.0.1','proxyPort'=>'8087');  
+	$cu = new Curl();  
+	//得到 baidu 的首页内容  
+	echo $cu->get('http://baidu.com/');  
+	  
+	//模拟登录  
+	$cu->post('http://www.***.com',array('uname'=>'admin','upass'=>'admin'));  
+	echo $cu->get('http://www.***.com');  
+	  
+	//上传内容和文件  
+	echo $cu->post('http://a.com/a.php',array('id'=>1,'name'=>'yuanwei'),  
+	array('img'=>'file/a.jpg','files'=>array('file/1.zip','file/2.zip')));  
+	  
+	//得到所有调试信息  
+	echo 'ERRNO='.$cu->errno();  
+	echo 'ERROR='.$cu->error();  
+	print_r($cu->getinfo()); 
 	return $html;
 }
 
