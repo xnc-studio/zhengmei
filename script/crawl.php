@@ -13,27 +13,111 @@ function get_facebook_list_from_curator(){
 	$date='2014-01-01';
 	$date=strtotime($date);
 	$today = time();
-	$fobj=fopen('./data/get_facebook_list_from_curator.csv', 'a+');
+	// $fobj=fopen('./data/get_facebook_list_from_curator.csv', 'a+');
 	while (true) {
 
 		$link = sprintf($temp,date('Y-m-d',$date));
 		$html=crawl_html($link);
 		$name = trim(strmid($html, "jpg\"/>\n<h1>","<a target=\"_blank\" onclick="));
-		$facebook_link = trim(strmid($html, ");\" href=\"","\"><img width=\"45\" height=45\""));
+		$facebook_link = trim(strmid($html, ");\" href=\"","/\"><img width=\"45\" height=45\""));
 		$str = sprintf("%s\t%s\t%s\n",date('Y-m-d',$date),$name,$facebook_link);
-		fwrite($fobj, $str);
+		$fid = str_replace('https://facebook.com/', '', $facebook_link);
+		db_query(sprintf("INSERT INTO `members`(`fid`,`type`,`name`) VALUES('%s','%s','%s');",$fid,1,$name));
+		// fwrite($fobj, $str);
 		echo $str;
 		$date+=(24*60*60);
 		if($date>$today) break;
 	}
-	fclose($fobj);
+	db_close();
+	// fclose($fobj);
+}
+
+// 虚幻获取当前可以获取到的所有facebook地址列表
+function get_all_facebook_ids_while(){
+	db_close();
+	$index=432;
+	while (true) {
+		# code...
+		echo sprintf("%s\n",$index);
+		$rst = get_facebook_id_from_curator_img($index);
+		$index++;
+		if(!$rst) continue;
+		
+	}
+	db_close();
+}
+
+// 单个正妹流照片照片获取facebook的id
+function get_facebook_id_from_curator_img($img_id){
+	// $img_id=7771;
+	$temp='http://curator.im/item/%s/';
+	$url =sprintf($temp,$img_id);
+	// echo $url;
+	$today = time();
+	$html=crawl_html($url);
+	// $fobj=fopen('./data/facebook_link.txt', 'a+');
+	if($html){
+		$name = trim(strmid($html, "<div class=\"page-header\">\n<h1>","</h1>\n</div>"));
+		$facebook_link = trim(strmid($html, "<button class=\"btn btn-default btn-lg btn-block hidden-sm\">\n<a target=\"_blank\" href=\"","\"><i class=\"fa fa-facebook-square\"></i>"));
+		$str = sprintf("%s\t%s\t%s\n",date('Y-m-d',$today),$name,$facebook_link);
+		$fid = str_replace('http://facebook.com/', '', $facebook_link);
+		$rst = db_query(sprintf("INSERT INTO `members`(`fid`,`type`,`name`) VALUES('%s','%s','%s');",$fid,1,$name));
+		// fwrite($fobj, $str);
+		echo sprintf("%s\t%s\n",$str,$rst);
+		if($name&&$facebook_link) return true;
+	}
+	// fclose($fobj);
+	// if()
+	
+	return false;
+}
+
+function db_get_instance($action=true){
+	$db=null;
+	if($action){
+		if(!$db){
+			$db = new SQLite3('./data/zhengmei.db');
+			$db->busyTimeout(1000);
+		}
+		return $db;
+	}
+	else{
+		$db && $db->close();
+		unset($db);
+		return true;
+	}
+	
+	
+}
+function db_close(){
+	return db_get_instance(false);
+}
+function db_query($sql){
+	// echo $sql;
+	$db=db_get_instance();
+	if($db){
+		$rst = @$db->exec($sql);
+		if(!$rst){
+			// var_dump($db->lastErrorCode());
+			if($db->lastErrorCode()==19) return true;
+			$seconds=rand(1,10)/4;
+			echo 'db locked, sleep for '.$seconds .' seconds'."\n";
+			db_close();
+			sleep($seconds);
+			return db_query($sql);
+		}
+		return $rst;
+	}
+	else{
+		return false;
+	}
+	// db_close();
+
 }
 
 
-
-
 function crawl_html($link){
-	$html=file_get_contents($link);
+	$html=@file_get_contents($link);
 	return $html;
 }
 function crawl_html_proxy($link){
