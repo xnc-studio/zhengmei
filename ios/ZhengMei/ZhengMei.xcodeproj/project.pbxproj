@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		94B47EF618E2AD23009FBAFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF518E2AD23009FBAFE /* Foundation.framework */; };
+		94B47EF818E2AD23009FBAFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF718E2AD23009FBAFE /* CoreGraphics.framework */; };
+		94B47EFA18E2AD23009FBAFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF918E2AD23009FBAFE /* UIKit.framework */; };
+		94B47F0018E2AD23009FBAFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B47EFE18E2AD23009FBAFE /* InfoPlist.strings */; };
+		94B47F0218E2AD23009FBAFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B47F0118E2AD23009FBAFE /* main.m */; };
+		94B47F0618E2AD23009FBAFE /* XNCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B47F0518E2AD23009FBAFE /* XNCAppDelegate.m */; };
+		94B47F0918E2AD23009FBAFE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B47F0718E2AD23009FBAFE /* Main_iPhone.storyboard */; };
+		94B47F0C18E2AD23009FBAFE /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B47F0A18E2AD23009FBAFE /* Main_iPad.storyboard */; };
+		94B47F0F18E2AD23009FBAFE /* XNCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B47F0E18E2AD23009FBAFE /* XNCViewController.m */; };
+		94B47F1118E2AD23009FBAFE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B47F1018E2AD23009FBAFE /* Images.xcassets */; };
+		94B47F1818E2AD23009FBAFE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47F1718E2AD23009FBAFE /* XCTest.framework */; };
+		94B47F1918E2AD23009FBAFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF518E2AD23009FBAFE /* Foundation.framework */; };
+		94B47F1A18E2AD23009FBAFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF918E2AD23009FBAFE /* UIKit.framework */; };
+		94B47F2218E2AD23009FBAFE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94B47F2018E2AD23009FBAFE /* InfoPlist.strings */; };
+		94B47F2418E2AD23009FBAFE /* ZhengMeiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B47F2318E2AD23009FBAFE /* ZhengMeiTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		94B47F1B18E2AD23009FBAFE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94B47EEA18E2AD23009FBAFE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94B47EF118E2AD23009FBAFE;
+			remoteInfo = ZhengMei;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		94B47EF218E2AD23009FBAFE /* ZhengMei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhengMei.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B47EF518E2AD23009FBAFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		94B47EF718E2AD23009FBAFE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		94B47EF918E2AD23009FBAFE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		94B47EFD18E2AD23009FBAFE /* ZhengMei-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZhengMei-Info.plist"; sourceTree = "<group>"; };
+		94B47EFF18E2AD23009FBAFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94B47F0118E2AD23009FBAFE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		94B47F0318E2AD23009FBAFE /* ZhengMei-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZhengMei-Prefix.pch"; sourceTree = "<group>"; };
+		94B47F0418E2AD23009FBAFE /* XNCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNCAppDelegate.h; sourceTree = "<group>"; };
+		94B47F0518E2AD23009FBAFE /* XNCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNCAppDelegate.m; sourceTree = "<group>"; };
+		94B47F0818E2AD23009FBAFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		94B47F0B18E2AD23009FBAFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		94B47F0D18E2AD23009FBAFE /* XNCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XNCViewController.h; sourceTree = "<group>"; };
+		94B47F0E18E2AD23009FBAFE /* XNCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XNCViewController.m; sourceTree = "<group>"; };
+		94B47F1018E2AD23009FBAFE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		94B47F1618E2AD23009FBAFE /* ZhengMeiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZhengMeiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B47F1718E2AD23009FBAFE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		94B47F1F18E2AD23009FBAFE /* ZhengMeiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZhengMeiTests-Info.plist"; sourceTree = "<group>"; };
+		94B47F2118E2AD23009FBAFE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94B47F2318E2AD23009FBAFE /* ZhengMeiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhengMeiTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94B47EEF18E2AD23009FBAFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B47EF818E2AD23009FBAFE /* CoreGraphics.framework in Frameworks */,
+				94B47EFA18E2AD23009FBAFE /* UIKit.framework in Frameworks */,
+				94B47EF618E2AD23009FBAFE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B47F1318E2AD23009FBAFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B47F1818E2AD23009FBAFE /* XCTest.framework in Frameworks */,
+				94B47F1A18E2AD23009FBAFE /* UIKit.framework in Frameworks */,
+				94B47F1918E2AD23009FBAFE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94B47EE918E2AD23009FBAFE = {
+			isa = PBXGroup;
+			children = (
+				94B47EFB18E2AD23009FBAFE /* ZhengMei */,
+				94B47F1D18E2AD23009FBAFE /* ZhengMeiTests */,
+				94B47EF418E2AD23009FBAFE /* Frameworks */,
+				94B47EF318E2AD23009FBAFE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94B47EF318E2AD23009FBAFE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94B47EF218E2AD23009FBAFE /* ZhengMei.app */,
+				94B47F1618E2AD23009FBAFE /* ZhengMeiTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94B47EF418E2AD23009FBAFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94B47EF518E2AD23009FBAFE /* Foundation.framework */,
+				94B47EF718E2AD23009FBAFE /* CoreGraphics.framework */,
+				94B47EF918E2AD23009FBAFE /* UIKit.framework */,
+				94B47F1718E2AD23009FBAFE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94B47EFB18E2AD23009FBAFE /* ZhengMei */ = {
+			isa = PBXGroup;
+			children = (
+				94B47F0418E2AD23009FBAFE /* XNCAppDelegate.h */,
+				94B47F0518E2AD23009FBAFE /* XNCAppDelegate.m */,
+				94B47F0718E2AD23009FBAFE /* Main_iPhone.storyboard */,
+				94B47F0A18E2AD23009FBAFE /* Main_iPad.storyboard */,
+				94B47F0D18E2AD23009FBAFE /* XNCViewController.h */,
+				94B47F0E18E2AD23009FBAFE /* XNCViewController.m */,
+				94B47F1018E2AD23009FBAFE /* Images.xcassets */,
+				94B47EFC18E2AD23009FBAFE /* Supporting Files */,
+			);
+			path = ZhengMei;
+			sourceTree = "<group>";
+		};
+		94B47EFC18E2AD23009FBAFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94B47EFD18E2AD23009FBAFE /* ZhengMei-Info.plist */,
+				94B47EFE18E2AD23009FBAFE /* InfoPlist.strings */,
+				94B47F0118E2AD23009FBAFE /* main.m */,
+				94B47F0318E2AD23009FBAFE /* ZhengMei-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94B47F1D18E2AD23009FBAFE /* ZhengMeiTests */ = {
+			isa = PBXGroup;
+			children = (
+				94B47F2318E2AD23009FBAFE /* ZhengMeiTests.m */,
+				94B47F1E18E2AD23009FBAFE /* Supporting Files */,
+			);
+			path = ZhengMeiTests;
+			sourceTree = "<group>";
+		};
+		94B47F1E18E2AD23009FBAFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94B47F1F18E2AD23009FBAFE /* ZhengMeiTests-Info.plist */,
+				94B47F2018E2AD23009FBAFE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94B47EF118E2AD23009FBAFE /* ZhengMei */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94B47F2718E2AD23009FBAFE /* Build configuration list for PBXNativeTarget "ZhengMei" */;
+			buildPhases = (
+				94B47EEE18E2AD23009FBAFE /* Sources */,
+				94B47EEF18E2AD23009FBAFE /* Frameworks */,
+				94B47EF018E2AD23009FBAFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZhengMei;
+			productName = ZhengMei;
+			productReference = 94B47EF218E2AD23009FBAFE /* ZhengMei.app */;
+			productType = "com.apple.product-type.application";
+		};
+		94B47F1518E2AD23009FBAFE /* ZhengMeiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94B47F2A18E2AD23009FBAFE /* Build configuration list for PBXNativeTarget "ZhengMeiTests" */;
+			buildPhases = (
+				94B47F1218E2AD23009FBAFE /* Sources */,
+				94B47F1318E2AD23009FBAFE /* Frameworks */,
+				94B47F1418E2AD23009FBAFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94B47F1C18E2AD23009FBAFE /* PBXTargetDependency */,
+			);
+			name = ZhengMeiTests;
+			productName = ZhengMeiTests;
+			productReference = 94B47F1618E2AD23009FBAFE /* ZhengMeiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94B47EEA18E2AD23009FBAFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = XNC;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "XNC Studio";
+				TargetAttributes = {
+					94B47F1518E2AD23009FBAFE = {
+						TestTargetID = 94B47EF118E2AD23009FBAFE;
+					};
+				};
+			};
+			buildConfigurationList = 94B47EED18E2AD23009FBAFE /* Build configuration list for PBXProject "ZhengMei" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 94B47EE918E2AD23009FBAFE;
+			productRefGroup = 94B47EF318E2AD23009FBAFE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94B47EF118E2AD23009FBAFE /* ZhengMei */,
+				94B47F1518E2AD23009FBAFE /* ZhengMeiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94B47EF018E2AD23009FBAFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B47F0C18E2AD23009FBAFE /* Main_iPad.storyboard in Resources */,
+				94B47F1118E2AD23009FBAFE /* Images.xcassets in Resources */,
+				94B47F0918E2AD23009FBAFE /* Main_iPhone.storyboard in Resources */,
+				94B47F0018E2AD23009FBAFE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B47F1418E2AD23009FBAFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B47F2218E2AD23009FBAFE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94B47EEE18E2AD23009FBAFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B47F0618E2AD23009FBAFE /* XNCAppDelegate.m in Sources */,
+				94B47F0218E2AD23009FBAFE /* main.m in Sources */,
+				94B47F0F18E2AD23009FBAFE /* XNCViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B47F1218E2AD23009FBAFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B47F2418E2AD23009FBAFE /* ZhengMeiTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94B47F1C18E2AD23009FBAFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94B47EF118E2AD23009FBAFE /* ZhengMei */;
+			targetProxy = 94B47F1B18E2AD23009FBAFE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		94B47EFE18E2AD23009FBAFE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94B47EFF18E2AD23009FBAFE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		94B47F0718E2AD23009FBAFE /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94B47F0818E2AD23009FBAFE /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		94B47F0A18E2AD23009FBAFE /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94B47F0B18E2AD23009FBAFE /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		94B47F2018E2AD23009FBAFE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94B47F2118E2AD23009FBAFE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94B47F2518E2AD23009FBAFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94B47F2618E2AD23009FBAFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		94B47F2818E2AD23009FBAFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZhengMei/ZhengMei-Prefix.pch";
+				INFOPLIST_FILE = "ZhengMei/ZhengMei-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		94B47F2918E2AD23009FBAFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZhengMei/ZhengMei-Prefix.pch";
+				INFOPLIST_FILE = "ZhengMei/ZhengMei-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		94B47F2B18E2AD23009FBAFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZhengMei.app/ZhengMei";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZhengMei/ZhengMei-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ZhengMeiTests/ZhengMeiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		94B47F2C18E2AD23009FBAFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZhengMei.app/ZhengMei";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ZhengMei/ZhengMei-Prefix.pch";
+				INFOPLIST_FILE = "ZhengMeiTests/ZhengMeiTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94B47EED18E2AD23009FBAFE /* Build configuration list for PBXProject "ZhengMei" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B47F2518E2AD23009FBAFE /* Debug */,
+				94B47F2618E2AD23009FBAFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94B47F2718E2AD23009FBAFE /* Build configuration list for PBXNativeTarget "ZhengMei" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B47F2818E2AD23009FBAFE /* Debug */,
+				94B47F2918E2AD23009FBAFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		94B47F2A18E2AD23009FBAFE /* Build configuration list for PBXNativeTarget "ZhengMeiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B47F2B18E2AD23009FBAFE /* Debug */,
+				94B47F2C18E2AD23009FBAFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94B47EEA18E2AD23009FBAFE /* Project object */;
+}
