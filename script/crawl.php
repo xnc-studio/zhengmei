@@ -1,5 +1,5 @@
 <?php
-// http://curator.im/girl_of_the_day/2014-03-04/
+// http://curator.im/girl_of_the_day/2014-03-04/ test
 if(isset($argv)&&count($argv)>=2){
 	$_REQUEST['action']=$argv[1];
 }
