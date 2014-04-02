@@ -72,6 +72,77 @@ function get_facebook_id_from_curator_img($img_id){
 	return false;
 }
 
+function init_fb(){
+	static $facebook=null;
+	if(!$facebook){
+		require './class/facebook-php-sdk/src/facebook.php';
+		$facebook = new Facebook(array(
+		  'appId'  => '112161425513130',
+		  'secret' => 'cab4f988e43e8cdb12ced08f4e7f4116',
+		));
+	}
+	return $facebook;
+	
+}
+// 批量某个人的所有fb未存储的新图
+function batch_fetch_one_fb_photos($memberid=null){
+	if(!$memberid){
+		$memberid='243';
+	}
+	$sql = sprintf("SELECT fid from members where mid=%s and type=1",$memberid);
+	$info = mysql_get_row($sql);
+	$fid=$info['fid'];
+	$facebook=init_fb();
+	$api_tmp='/%s/photos?fields=id,source,name&limit=50&type=uploaded&after=%s';
+	echo sprintf("-------\nMemberid:%s\n",$memberid);
+	$after='';
+	$index=0;
+	while (true) {
+		$api=sprintf($api_tmp,$fid,$after);
+		// echo $api;
+		$data=$facebook->api($api);
+		$break=false;
+		// var_dump($data);
+		if($data){
+			// print_r($data);
+			// $data=json_decode($data,true);
+			// print_r($data['data']);exit();
+			if($data&&count($data['data'])>0){
+				foreach ($data['data'] as $row) {
+					$img_id=$row['id'];
+					$source=$row['source'];
+					$desc=(isset($row['name'])?$row['name']:'');
+					$hash=md5($source);
+					$sql = sprintf("SELECT count(1) as `count` from `photos` where `hash`='%s';",$hash);
+					$d=mysql_get_row($sql);
+					// var_dump($d);
+					if(!$d||$d['count']>0){
+						$break=true;
+						break;
+					}
+					else{
+						// echo 11;
+						$sql = sprintf("INSERT INTO `photos`(`uid`,`hash`,`source_type`,`source_id`,`desc`) VALUES('%s','%s','%s','%s','%s');",$memberid,$hash,1,$img_id,$desc);
+						// echo $sql;
+						mysql_query($sql);
+						$sql = sprintf("INSERT INTO `images_fetch`(`hash`,`url`) VALUES('%s','%s');",$hash,$source);
+						mysql_query($sql);
+						$index++;
+						echo sprintf("add %s\n",$index);
+					}
+
+				}
+			}
+			$after=$data['paging']['cursors']['after'];
+		}
+		if($break) break;
+	}
+
+// print_r($naitik);
+
+}
+
+
 function db_get_instance($action=true){
 	$db=null;
 	if($action){
@@ -86,8 +157,6 @@ function db_get_instance($action=true){
 		unset($db);
 		return true;
 	}
-	
-	
 }
 function db_close(){
 	return db_get_instance(false);
@@ -115,6 +184,42 @@ function db_query($sql){
 
 }
 
+function mysql_get_instance(){
+	
+	$db=null;
+	if(!$db){
+		$db = @mysql_connect('112.124.8.144','beiliao','beiliao123') or die("Database error"); 
+		@mysql_select_db('xnc_fbmm', $db); 
+
+	}
+	return $db;
+}
+
+
+function mysql_get_rows($sql){
+	mysql_get_instance();
+	$result=mysql_query($sql);
+	$rst=array();
+	if($result){
+
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+	 		$rst[]=$row;
+		}
+	}
+	return $rst;
+}
+
+function mysql_get_row($sql){
+	mysql_get_instance();
+	$result=mysql_query($sql);
+	if($result){
+
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+	 		return $row;
+		}
+	}
+	return NULL;
+}
 
 function crawl_html($link){
 	$html=@file_get_contents($link);
