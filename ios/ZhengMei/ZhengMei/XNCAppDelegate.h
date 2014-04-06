@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XNCViewController;
 
 @interface XNCAppDelegate : UIResponder <UIApplicationDelegate>
 

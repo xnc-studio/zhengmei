@@ -8,17 +8,25 @@
 
 #import "XNCViewController.h"
 
+
 @interface XNCViewController ()
 
 @end
 
 @implementation XNCViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
 }
+
+- (void)viewDidUnload
+{
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {

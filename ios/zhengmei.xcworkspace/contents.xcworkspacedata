@@ -1,4 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:ZhengMei"
+      name = "ZhengMei">
+      <Group
+         location = "group:ZhengMei"
+         name = "ZhengMei">
+         <Group
+            location = "group:Base.lproj"
+            name = "Base.lproj">
+            <FileRef
+               location = "group:Main_iPad.storyboard">
+            </FileRef>
+            <FileRef
+               location = "group:Main_iPhone.storyboard">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:en.lproj"
+            name = "en.lproj">
+            <FileRef
+               location = "group:InfoPlist.strings">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:Images.xcassets"
+            name = "Images.xcassets">
+            <Group
+               location = "group:AppIcon.appiconset"
+               name = "AppIcon.appiconset">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+            <Group
+               location = "group:LaunchImage.launchimage"
+               name = "LaunchImage.launchimage">
+               <FileRef
+                  location = "group:Contents.json">
+               </FileRef>
+            </Group>
+         </Group>
+         <FileRef
+            location = "group:main.m">
+         </FileRef>
+         <FileRef
+            location = "group:XNCAppDelegate.h">
+         </FileRef>
+         <FileRef
+            location = "group:XNCAppDelegate.m">
+         </FileRef>
+         <FileRef
+            location = "group:XNCViewController.h">
+         </FileRef>
+         <FileRef
+            location = "group:XNCViewController.m">
+         </FileRef>
+         <FileRef
+            location = "group:ZhengMei-Info.plist">
+         </FileRef>
+         <FileRef
+            location = "group:ZhengMei-Prefix.pch">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:ZhengMei.xcodeproj">
+      </FileRef>
+      <Group
+         location = "group:ZhengMeiTests"
+         name = "ZhengMeiTests">
+         <Group
+            location = "group:en.lproj"
+            name = "en.lproj">
+            <FileRef
+               location = "group:InfoPlist.strings">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:ZhengMeiTests-Info.plist">
+         </FileRef>
+         <FileRef
+            location = "group:ZhengMeiTests.m">
+         </FileRef>
+      </Group>
+   </Group>
 </Workspace>

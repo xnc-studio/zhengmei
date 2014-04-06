@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9429981918E445B800C01DB4 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9429981818E445B800C01DB4 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9429982618E447D300C01DB4 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429981B18E447D300C01DB4 /* blackArrow.png */; };
+		9429982718E447D300C01DB4 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429981C18E447D300C01DB4 /* blackArrow@2x.png */; };
+		9429982818E447D300C01DB4 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429981D18E447D300C01DB4 /* blueArrow.png */; };
+		9429982918E447D300C01DB4 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429981E18E447D300C01DB4 /* blueArrow@2x.png */; };
+		9429982A18E447D300C01DB4 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429981F18E447D300C01DB4 /* grayArrow.png */; };
+		9429982B18E447D300C01DB4 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429982018E447D300C01DB4 /* grayArrow@2x.png */; };
+		9429982C18E447D300C01DB4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9429982118E447D300C01DB4 /* MainWindow.xib */; };
+		9429982D18E447D300C01DB4 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9429982218E447D300C01DB4 /* RootViewController.xib */; };
+		9429982E18E447D300C01DB4 /* TableViewPull-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9429982318E447D300C01DB4 /* TableViewPull-Info.plist */; };
+		9429982F18E447D300C01DB4 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429982418E447D300C01DB4 /* whiteArrow.png */; };
+		9429983018E447D300C01DB4 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9429982518E447D300C01DB4 /* whiteArrow@2x.png */; };
 		94B47EF618E2AD23009FBAFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF518E2AD23009FBAFE /* Foundation.framework */; };
 		94B47EF818E2AD23009FBAFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF718E2AD23009FBAFE /* CoreGraphics.framework */; };
 		94B47EFA18E2AD23009FBAFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B47EF918E2AD23009FBAFE /* UIKit.framework */; };
@@ -35,6 +47,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9429981718E445B800C01DB4 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		9429981818E445B800C01DB4 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		9429981B18E447D300C01DB4 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		9429981C18E447D300C01DB4 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		9429981D18E447D300C01DB4 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		9429981E18E447D300C01DB4 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		9429981F18E447D300C01DB4 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		9429982018E447D300C01DB4 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		9429982118E447D300C01DB4 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		9429982218E447D300C01DB4 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		9429982318E447D300C01DB4 /* TableViewPull-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TableViewPull-Info.plist"; sourceTree = "<group>"; };
+		9429982418E447D300C01DB4 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		9429982518E447D300C01DB4 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		94B47EF218E2AD23009FBAFE /* ZhengMei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhengMei.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B47EF518E2AD23009FBAFE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94B47EF718E2AD23009FBAFE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,9 +106,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9429981518E445B800C01DB4 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				9429981618E445B800C01DB4 /* view */,
+			);
+			name = classes;
+			path = ZhengMei/classes;
+			sourceTree = "<group>";
+		};
+		9429981618E445B800C01DB4 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				9429981718E445B800C01DB4 /* EGORefreshTableHeaderView.h */,
+				9429981818E445B800C01DB4 /* EGORefreshTableHeaderView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		9429981A18E447D300C01DB4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9429981B18E447D300C01DB4 /* blackArrow.png */,
+				9429981C18E447D300C01DB4 /* blackArrow@2x.png */,
+				9429981D18E447D300C01DB4 /* blueArrow.png */,
+				9429981E18E447D300C01DB4 /* blueArrow@2x.png */,
+				9429981F18E447D300C01DB4 /* grayArrow.png */,
+				9429982018E447D300C01DB4 /* grayArrow@2x.png */,
+				9429982118E447D300C01DB4 /* MainWindow.xib */,
+				9429982218E447D300C01DB4 /* RootViewController.xib */,
+				9429982318E447D300C01DB4 /* TableViewPull-Info.plist */,
+				9429982418E447D300C01DB4 /* whiteArrow.png */,
+				9429982518E447D300C01DB4 /* whiteArrow@2x.png */,
+			);
+			name = Resources;
+			path = ZhengMei/Resources;
+			sourceTree = "<group>";
+		};
 		94B47EE918E2AD23009FBAFE = {
 			isa = PBXGroup;
 			children = (
+				9429981A18E447D300C01DB4 /* Resources */,
+				9429981518E445B800C01DB4 /* classes */,
 				94B47EFB18E2AD23009FBAFE /* ZhengMei */,
 				94B47F1D18E2AD23009FBAFE /* ZhengMeiTests */,
 				94B47EF418E2AD23009FBAFE /* Frameworks */,
@@ -232,8 +296,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9429982C18E447D300C01DB4 /* MainWindow.xib in Resources */,
+				9429982A18E447D300C01DB4 /* grayArrow.png in Resources */,
+				9429982D18E447D300C01DB4 /* RootViewController.xib in Resources */,
+				9429982F18E447D300C01DB4 /* whiteArrow.png in Resources */,
+				9429982918E447D300C01DB4 /* blueArrow@2x.png in Resources */,
 				94B47F0C18E2AD23009FBAFE /* Main_iPad.storyboard in Resources */,
+				9429982B18E447D300C01DB4 /* grayArrow@2x.png in Resources */,
+				9429983018E447D300C01DB4 /* whiteArrow@2x.png in Resources */,
 				94B47F1118E2AD23009FBAFE /* Images.xcassets in Resources */,
+				9429982E18E447D300C01DB4 /* TableViewPull-Info.plist in Resources */,
+				9429982718E447D300C01DB4 /* blackArrow@2x.png in Resources */,
+				9429982618E447D300C01DB4 /* blackArrow.png in Resources */,
+				9429982818E447D300C01DB4 /* blueArrow.png in Resources */,
 				94B47F0918E2AD23009FBAFE /* Main_iPhone.storyboard in Resources */,
 				94B47F0018E2AD23009FBAFE /* InfoPlist.strings in Resources */,
 			);
@@ -257,6 +332,7 @@
 				94B47F0618E2AD23009FBAFE /* XNCAppDelegate.m in Sources */,
 				94B47F0218E2AD23009FBAFE /* main.m in Sources */,
 				94B47F0F18E2AD23009FBAFE /* XNCViewController.m in Sources */,
+				9429981918E445B800C01DB4 /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -471,6 +547,7 @@
 				94B47F2918E2AD23009FBAFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		94B47F2A18E2AD23009FBAFE /* Build configuration list for PBXNativeTarget "ZhengMeiTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +556,7 @@
 				94B47F2C18E2AD23009FBAFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
