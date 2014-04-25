@@ -1,5 +1,5 @@
 <?php
-// http://curator.im/girl_of_the_day/2014-03-04/ test
+date_default_timezone_set('GMT');
 if(isset($argv)&&count($argv)>=2){
 	$_REQUEST['action']=$argv[1];
 }
@@ -8,14 +8,26 @@ if($action){
 	call_user_func($action);
 }
 
+function get_lastest_daily_date(){
+	$sql = sprintf("SELECT `value` FROM `settings` where `key`='lastest_daily_date';");
+	$rst = mysql_get_cell($sql);
+	if(!$rst){
+		$rst=strtotime('2014-03-30');
+	}
+	return $rst;
+}
+function set_lastest_daily_date($date){
+	$sql = sprintf("UPDATE `settings` SET `value`='%s' where `key`='lastest_daily_date';",$date);
+	mysql_query($sql);
+}
+
 function get_facebook_list_from_curator(){
 	$temp = 'http://curator.im/girl_of_the_day/%s/';
-	$date='2014-01-01';
-	$date=strtotime($date);
-	$today = time();
-	// $fobj=fopen('./data/get_facebook_list_from_curator.csv', 'a+');
+	$date=get_lastest_daily_date();
+	$today = strtotime(date('Y-m-d'));
 	while (true) {
-
+		$date+=(24*60*60);
+		if($date>$today) break;
 		$link = sprintf($temp,date('Y-m-d',$date));
 		$html=crawl_html($link);
 		$name = trim(strmid($html, "jpg\"/>\n<h1>","<a target=\"_blank\" onclick="));
@@ -23,26 +35,63 @@ function get_facebook_list_from_curator(){
 		$str = sprintf("%s\t%s\t%s\n",date('Y-m-d',$date),$name,$facebook_link);
 		$fid = str_replace('https://facebook.com/', '', $facebook_link);
 		db_query(sprintf("INSERT INTO `members`(`fid`,`type`,`name`) VALUES('%s','%s','%s');",$fid,1,$name));
-		// fwrite($fobj, $str);
+		set_lastest_daily_date($date);
 		echo $str;
-		$date+=(24*60*60);
-		if($date>$today) break;
 	}
 	db_close();
 	// fclose($fobj);
 }
 
+// 每天获取facebook账号逻辑
+function get_fb_account_daily(){
+	echo "-----------------fetch members-----------------\n";
+	echo "fecth from daily\n";
+	get_facebook_list_from_curator();
+	echo "fecth from eachpage\n";
+	get_all_facebook_ids_while();
+	echo "finished fetch\n";
+
+	echo "-----------------fetch photos-----------------\n";
+	
+
+}
+
+function get_lastest_stream_id(){
+	$sql = sprintf("SELECT `value` FROM `settings` where `key`='lastest_stream_id';");
+	$rst = mysql_get_cell($sql);
+	if(!$rst){
+		$rst=432;
+	}
+	return $rst;
+}
+function set_lastest_stream_id($id){
+	$sql = sprintf("UPDATE `settings` SET `value`='%s' where `key`='lastest_stream_id';",$id);
+	mysql_query($sql);
+}
+
+function get_lastest_stream_index(){
+	$html=crawl_html('http://curator.im/stream/');
+	if($html){
+		$id = trim(strmid($html, "<div id=\"items\">\n<div class=\"item\">\n<div class=\"box\" itemscope itemtype=\"http://schema.org/ImageObject\">\n<div style=\"width: 250px; height: 368px\">\n<a class=\"popup\" href=\"/item/","/\"><img alt=\""));
+		if($id) return (int)$id;
+	}
+	return 0;
+}
+
 // 虚幻获取当前可以获取到的所有facebook地址列表
 function get_all_facebook_ids_while(){
 	db_close();
-	$index=432;
+	$index=get_lastest_stream_id();
+	echo sprintf("now_index is %s\n",$index);
+	$latest_index=get_lastest_stream_index();
+	echo sprintf("latest_index is %s\n",$latest_index);
 	while (true) {
-		# code...
-		echo sprintf("%s\n",$index);
-		$rst = get_facebook_id_from_curator_img($index);
 		$index++;
+		if($index>$latest_index) break;
+		echo sprintf("fetching_index is %s/%s\n",$index,$latest_index);
+		$rst = get_facebook_id_from_curator_img($index);
+		set_lastest_stream_id($index);
 		if(!$rst) continue;
-		
 	}
 	db_close();
 }
@@ -59,11 +108,13 @@ function get_facebook_id_from_curator_img($img_id){
 	if($html){
 		$name = trim(strmid($html, "<div class=\"page-header\">\n<h1>","</h1>\n</div>"));
 		$facebook_link = trim(strmid($html, "<button class=\"btn btn-default btn-lg btn-block hidden-sm\">\n<a target=\"_blank\" href=\"","\"><i class=\"fa fa-facebook-square\"></i>"));
-		$str = sprintf("%s\t%s\t%s\n",date('Y-m-d',$today),$name,$facebook_link);
+		
 		$fid = str_replace('http://facebook.com/', '', $facebook_link);
+		$str = sprintf("\t%s\t%s\t%s\n",date('Y-m-d',$today),$name,$fid);
+		if(!$fid) return false;
 		$rst = db_query(sprintf("INSERT INTO `members`(`fid`,`type`,`name`) VALUES('%s','%s','%s');",$fid,1,$name));
 		// fwrite($fobj, $str);
-		echo sprintf("%s\t%s\n",$str,$rst);
+		echo $str;
 		if($name&&$facebook_link) return true;
 	}
 	// fclose($fobj);
@@ -188,11 +239,31 @@ function mysql_get_instance(){
 	
 	$db=null;
 	if(!$db){
-		$db = @mysql_connect('112.124.8.144','beiliao','beiliao123') or die("Database error"); 
+		$db = @mysql_connect('127.0.0.1','root','root') or die("Database error"); 
 		@mysql_select_db('xnc_fbmm', $db); 
 
 	}
 	return $db;
+}
+
+function mysql_get_count($sql){
+	$result=mysql_get_row($sql);
+	if(isset($result['count'])){
+		return $result['count'];
+	}
+	return null;
+}
+function mysql_get_cell($sql){
+	$result=mysql_get_row($sql);
+	if($result){
+		$values= array_values($result);
+		if(isset($values[0])){
+			return $values[0];
+		}
+	}
+	
+
+	return null;
 }
 
 
@@ -254,9 +325,13 @@ function strmid($html,$before,$after){
 	// mb_stripos(haystack, needle);
 	$index_before = mb_strpos($html, $before,0,'utf8')+$len_before;
 	$index_after = mb_strpos($html, $after,0,'utf8');
+	// var_dump(mb_strpos($html, $before,0,'utf8'));
 	return mb_substr($html,$index_before,$index_after-$index_before,'utf8');
 }
 
+
+
+// 
 
 
 
