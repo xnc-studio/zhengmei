@@ -76,8 +76,14 @@ function set_lastest_stream_id($id){
 
 function get_lastest_stream_index(){
 	$html=crawl_html('http://curator.im/stream/');
+	// var_dump($html);exit();
 	if($html){
-		$id = trim(strmid($html, "<div id=\"items\">\n<div class=\"item\">\n<div class=\"box\" itemscope itemtype=\"http://schema.org/ImageObject\">\n<div style=\"width: 250px; height: 368px\">\n<a class=\"popup\" href=\"/item/","/\"><img alt=\""));
+		$id = trim(strmid($html, "<div id=\"items\">\n<div class=\"item\">\n<div class=\"box\" itemscope itemtype=\"http://schema.org/ImageObject\">\n<div style=\"width: 250px; height:","/\"><img alt=\""));
+
+		$id=str_replace("\">\n<a class=\"popup\" href=\"/item/", "", $id);
+		
+		$id = preg_replace("/\d+px/", "",$id);
+		// var_dump($id);exit();
 		if($id) return (int)$id;
 	}
 	return 0;
@@ -214,7 +220,7 @@ function get_fb_original_image_all(){
 					$ohash=md5($ourl);
 					$sql = sprintf("UPDATE photos set ohash='%s' where hash='%s';",$ohash,$row['hash']);
 					mysql_query($sql);
-					$sql = sprintf("INSERT INTO`images_fetch`(`hash`,`url`,`uploaded`,`onew`,`ofetched`) VALUES('%s','%s',0,0,1);",$ohash,$ourl);
+					$sql = sprintf("INSERT INTO`images_fetch`(`hash`,`url`,`uploaded`,`onew`,`ofetched`,`iso`) VALUES('%s','%s',0,0,1,1);",$ohash,$ourl);
 					mysql_query($sql);
 					echo 'get a bigger image';
 				}
@@ -504,19 +510,77 @@ function strmid($html,$before,$after){
 	return mb_substr($html,$index_before,$index_after-$index_before,'utf8');
 }
 
+function upload_toyoupai($hash='',$iso=0){
+	
+	if(!$hash){
+		$hash='0d3838d09d204cb04b4d2687b8bea806';
+	}
+	static $upyun=null;
+	if(!$upyun){
+		require './class/upyun.class.php';
+		$upyun = new UpYun('fbgirls', 'scriptupload', 'scriptupload', UpYun::ED_TELECOM);	
+	}
+	$file_name='./data/images/'.$hash.'.jpg';
+	$fh = @fopen($file_name, 'rb');
+	if(!$fh){
+		echo "can not find the download file\n";
+		return false;
+	}
+	$folder='n';
+	if($iso) $folder='o';
+	$len=4;
+	$index=0;
+	$name=array();
+	while (true) {
+		if($sub=substr($hash, $index*$len,$len)){
+			$name[]=$sub;	
+			$index++;
+		}
+		else{
+			break;
+		}
+	}
+	$name=implode('/', $name);
+	$path=sprintf("/%s/%s.jpg",$folder,$name);
+	
+	try{
+		$rsp = $upyun->writeFile($path, $fh, true);   // 上传图片，自动创建目录
+		if(!$rsp){
+			echo "can not upload file\n";
+			return false;
+		}
+		echo "file is uploaded\n";
+	}
+	catch(Exception $ex){
+		
+	}
+	
+	return true;
+
+	
+
+}
+
 // 4、抓取图片，打马赛克 ，上传
 function download_mark_upload(){
 	$index=0;
 	$page_num=10;
-	$img_mask=@imagecreatefrompng('./data/fbgirls_mask_30.png');
+	static $img_mask=null;
+	static $width_mask=null;
+	static $height_mask=null;
 	if(!$img_mask){
-		echo "mask image error";
-		exit();
+		$img_mask=@imagecreatefrompng('./data/mm.png');
+		if(!$img_mask){
+			echo "mask image error";
+			exit();
+		}
+		else{
+			$width_mask=imagesx($img_mask);
+			$height_mask=imagesy($img_mask);
+		}
+
 	}
-	else{
-		$width_mask=imagesx($img_mask);
-		$height_mask=imagesy($img_mask);
-	}
+	
 	while (true) {
 		$sql = sprintf("SELECT * from images_fetch where uploaded=0 order by id asc limit %s,%s;",$index*$page_num,$page_num);
 		$data=mysql_get_rows($sql);
@@ -525,28 +589,53 @@ function download_mark_upload(){
 				$id=$row['id'];
 				$hash=$row['hash'];
 				$url=$row['url'];
-				// var_dump($id,$hash,$url);
+				echo $row['id']."\n";
+				echo $row['hash']."\n";
+				echo "try download image\n";
 				$image_data=crawl_html_proxy($url);
-				// var_dump($image_data,$url);exit();
+				
 				if($image_data){
-					$img = imagecreatefromstring($image_data);
-					$width=imagesx($img);
-					$height=imagesy($img);
-					$dst_x=abs(ceil($width-$width_mask-2));
-					$dst_y=abs(ceil($height-$height_mask-2));
-					if(imagecopy ($img , $img_mask, $dst_x , $dst_y , 0 , 0 , $width_mask , $height_mask)){
-						imagejpeg($img,'./data/images/'.$row['hash'].'.jpg',100);	
-						echo sprintf("image %s saved\n",$row['id']);
+					$file_name='./data/images/'.$row['hash'].'.jpg';
+					if($row['iso']){
+						echo "is an orgi image \n";
+						@file_put_contents($file_name, $image_data);
 					}
 					else{
-						echo sprintf("image %s cannot make mask\n",$row['id']);
+						echo "is a maskable image \n";
+						$img = imagecreatefromstring($image_data);
+						$width=imagesx($img);
+						$height=imagesy($img);
+						$dst_x=abs(ceil($width-$width_mask-2));
+						$dst_y=abs(ceil($height-$height_mask-2));
+						if(imagecopy ($img , $img_mask, $dst_x , $dst_y , 0 , 0 , $width_mask , $height_mask)){
+							imagejpeg($img,$file_name,100);	
+							echo sprintf("saved to disk\n");
+						}
+						else{
+							echo sprintf("cannot make mask\n");
+						}
 					}
+					// echo "begin upload\n";
+					// $rst = upload_toyoupai($row['hash']);
+					// unlink($file_name);
+					// $uploaded=1;
+					// if(!$rst) $uploaded=2;//上传失败
+					// $sql  = sprintf("UPDATE images_fetch set uploaded=%s where hash='%s';",$uploaded,$row['hash']);
+					// mysql_query($sql);
+					// $sql  = sprintf("UPDATE photos set uploaded=%s where hash='%s';",$uploaded,$row['hash']);
+					// mysql_query($sql);
+
 				}
 				else{
 					echo sprintf("image %s cannot get data\n",$row['id']);
 					continue;
 				}
-				exit();
+				echo "\n-------------------------------------\n";
+				// $index++;
+				// if($index==10){
+				// 	exit();
+				// }
+				
 				// var_dump($img);exit();
 			}
 
@@ -558,7 +647,6 @@ function download_mark_upload(){
 	}
 
 }
-
 // 
 
 
