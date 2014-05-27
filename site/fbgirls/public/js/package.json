@@ -1,0 +1,12 @@
+{
+  "family": "zhengmei",
+  "name": "main",
+  "version": "1.0.0",
+
+  "spm": {
+    "alias": {
+      "jquery": "jquery"
+    },
+    "output": ["main.js", "style.css"]
+  }
+}

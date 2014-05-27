@@ -48,10 +48,21 @@ function get_facebook_list_from_curator(){
 function get_fb_account_daily(){
 	echo "-----------------fetch members-----------------\n";
 	echo "fecth from daily\n";
-	get_facebook_list_from_curator();
+	get_facebook_list_from_curator(); 
 	echo "fecth from eachpage\n";
 	get_all_facebook_ids_while();
 	echo "finished fetch\n";
+
+	echo "-----------------fetch profile-----------------\n";
+
+	echo "fecth from profile\n";
+	fetch_one_fb_avatar_all();
+	echo "finished fetch\n";
+
+
+	echo "-----------------update wrong fid-----------------\n";
+	update_wrong_fid_all();
+
 
 	echo "-----------------fetch photos-----------------\n";
 	get_all_fb_photos();
@@ -145,6 +156,11 @@ function init_fb(){
 	}
 	return $facebook;
 }
+
+//从curator上抓取图片
+// function get_all_cu_photos(){
+
+// }
 
 function get_all_fb_photos(){
 	$sql = sprintf("SELECT mid from members where type=1 order by mid desc;");
@@ -290,6 +306,228 @@ function parse_all_url(){
 		$index++;
 	}
 	// exit();
+}
+
+function update_wrong_fid_all(){
+	$sql = sprintf("SELECT mid from members where fid_changed=1 and status=1 and username_fb is not null order by mid asc;");
+	$d=mysql_get_rows($sql);
+	if($d||empty($d)){
+		echo "no fid to update\n";
+	}
+	foreach ($d as $row) {
+		$memberid=$row['mid'];
+		echo "update  ".$memberid."'s fid"."\n";
+		update_wrong_fid($memberid);
+		echo "-----------------------------\n\n\n";
+	}
+}
+
+function update_wrong_fid($memberid=null){
+	if(!$memberid){
+		$memberid='243';
+	}
+	// and fid_changed=1 and status=1 and username_fb is not null
+	$sql = sprintf("SELECT username_fb,fid from members where mid=%s ",$memberid);
+	$info = mysql_get_row($sql);
+	if(!$info||empty($info)){
+		echo "no such user\n";
+		return;
+	}
+	$facebook=init_fb();
+	$username_fb=$info['username_fb'];
+	if(!$username_fb) return;
+	$api_tmp='/%s';
+	$api=sprintf($api_tmp,$username_fb);
+	// echo $api;
+	$data=$facebook->api($api);
+	if($data&&isset($data['id'])){
+		if($info['fid']!=$data['id']){
+			$new_fid=$data['id'];	
+			$sql = sprintf("UPDATE members set fid='%s',fid_changed='0' where mid='%s';",$new_fid,$memberid);
+			// echo $sql;
+			if(!mysql_query($sql)){
+				// 存在重复项目
+
+				$sql = sprintf("SELECT * FROM members where fid='%s';",$new_fid);
+				$d=mysql_get_row($sql);
+				$dup_id=$d['mid'];
+
+				$sql=sprintf("UPDATE members set status=3 where mid=%s",$memberid);
+				mysql_query($sql);
+
+				$sql = sprintf("UPDATE `photos` set `uid`='%s' where uid='%s';",$dup_id,$memberid);
+				mysql_query($sql);
+				echo sprintf("migrated %s to %s\n",$memberid,$dup_id);
+				return true;
+			}
+			else{
+				echo "facebook id changed to ".$new_fid."\n";
+				return true;
+			}
+		}
+		else{
+			echo "no new fid";
+		}
+		
+	}
+	else{
+		echo $data['error']['message']."\n";
+		return;	
+	}
+	
+	// $sql = sprintf(format)
+	// print_r($data);exit();
+
+}
+
+
+
+//每天运行一次
+function fetch_one_fb_avatar_all(){
+	$today=strtotime(date('Y-m-d'));
+	$sql = sprintf("SELECT mid from members where type=1 and status=1 and fid_changed=0 and (time_info_fetched=0 or time_info_fetched>%s) order by mid asc;",$today);
+	$d=mysql_get_rows($sql);
+	if($d||empty($d)){
+		echo "no avatar to download\n";
+	}
+	foreach ($d as $row) {
+		$memberid=$row['mid'];
+		echo "fetch ".$memberid."'s avatar"."\n";
+		fetch_one_fb_avatar($memberid);
+		echo "-----------------------------\n\n\n";
+	}
+}
+
+function fetch_one_fb_avatar($memberid=null){
+	if(!$memberid){
+		$memberid='244';
+	}
+	$sql = sprintf("SELECT fid,avatar,cover from members where mid=%s and type=1 and status=1",$memberid);
+	$info = mysql_get_row($sql);
+	if(!$info||empty($info)){
+		echo "no such user\n";
+		return;
+	}
+	$fid=$info['fid'];
+	$avatar_old=$info['avatar'];
+	$cover_old=$info['cover'];
+	$facebook=init_fb();
+	$api_tmp='/%s';
+	$api=sprintf($api_tmp,$fid);
+	$data=$facebook->api($api);
+	// print_r($data);exit();
+	if(!$data){
+		echo "can not get profile info\n";
+		return;
+	}
+	$today=strtotime(date('Y-m-d'));
+	if($data['error']){
+		if($data['error']['code']==100){
+			$sql = sprintf("UPDATE members set fid_changed=1,`time_info_fetched`=%d where mid=%s;",$today,$memberid);
+			mysql_query($sql);
+			echo "facebook id changed,need refetch the fid\n";
+			return;
+		}
+		elseif($data['error']['code']==21){
+			if(preg_match("/Page ID \d+ was migrated to page ID (\d+)/",$data['error']['message'],$match)){
+				$new_fid=$match[1];
+				$sql = sprintf("UPDATE members set fid='%s',fid_changed=1 where mid=%s;",$new_fid,$memberid);
+				// echo $sql;
+				if(!mysql_query($sql)){
+					// 存在重复项目
+
+					$sql = sprintf("SELECT * FROM members where fid='%s';",$new_fid);
+					$d=mysql_get_row($sql);
+					$dup_id=$d['mid'];
+
+					$sql=sprintf("UPDATE members set status=3 where mid=%s",$memberid);
+					mysql_query($sql);
+
+					$sql = sprintf("UPDATE `photos` set `uid`='%s' where uid='%s';",$dup_id,$memberid);
+					mysql_query($sql);
+					echo sprintf("migrated %s to %s\n",$memberid,$dup_id);
+					return fetch_one_fb_avatar($dup_id);
+				}
+				else{
+					echo "facebook id changed to ".$new_fid."\n";
+					return fetch_one_fb_avatar($memberid);			
+				}
+				
+			}
+		}
+		else{
+			echo $data['error']['message']."\n";
+			return;	
+		}
+		
+	}
+	// var_dump($data);
+
+	$about=@mysql_escape_string((isset($data['about'])?$data['about']:''));
+	$awards=@mysql_escape_string((isset($data['awards'])?$data['awards']:''));
+	$bio=@mysql_escape_string(isset($data['bio'])?$data['bio']:'');
+	$birth=(isset($data['birthday'])?strtotime($data['birthday']):0);;
+	$cover=(isset($data['cover'])?(md5($data['cover']['source'])):'');
+	$likes_fb=(isset($data['likes'])?$data['likes']:'');
+	$link_fb=(isset($data['link'])?$data['link']:'');
+	$username_fb=(isset($data['username'])?$data['username']:'');
+	$interests=@mysql_escape_string(isset($data['personal_interests'])?$data['personal_interests']:'');
+	$website=@mysql_escape_string(isset($data['website'])?$data['website']:'');
+	$avatar_source=sprintf("https://graph.facebook.com/%s/picture?type=large",$fid);
+	$avatar=md5($avatar_source);
+	
+	if($avatar!=$avatar_old&&$avatar_source){
+		echo "upload avatar"."\n";
+		$image_data=crawl_html_proxy($avatar_source);
+		$hash=md5($avatar_source);	
+		$file_name='./data/images/'.$hash.'.jpg';
+		file_put_contents($file_name, $image_data);
+		if(!upload_toyoupai($hash,'a','fbgirls-avatar')){
+			return;
+		}
+		unlink($file_name);
+
+		$img_id=0;
+		$sql = sprintf("INSERT INTO `photos`(`uid`,`hash`,`source_type`,`source_id`,`desc`,`width`,`height`,`time_create`,`count_like`,`is_avatar`,`uploaded`) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','1');",$memberid,$hash,1,$img_id,'',0,0,time(),0,1);
+		if(mysql_query($sql)){
+			$sql = sprintf("INSERT INTO `images_fetch`(`hash`,`url`,`ofetched`,`uploaded`) VALUES('%s','%s','1','1');",$hash,$data['cover']['source']);
+			mysql_query($sql);
+		}
+	}
+	else{
+		echo "no new avatar\n";
+	}
+
+	if(($cover_old!=$cover)&isset($data['cover'])&&$data['cover']['source']){
+		echo "upload conver"."\n";
+		$source=$data['cover']['source'];
+		$hash=md5($data['cover']['source']);
+		$image_data=crawl_html_proxy($source);
+		$file_name='./data/images/'.$hash.'.jpg';
+		file_put_contents($file_name, $image_data);
+		if(!upload_toyoupai($hash,'a','fbgirls-avatar')){
+			return;
+		}
+		unlink($file_name);
+
+		$img_id=0;
+		$sql = sprintf("INSERT INTO `photos`(`uid`,`hash`,`source_type`,`source_id`,`desc`,`width`,`height`,`time_create`,`count_like`,`is_avatar`,`uploaded`) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','1');",$memberid,$hash,1,$img_id,'',0,0,time(),0,1);
+		if(mysql_query($sql)){
+			$sql = sprintf("INSERT INTO `images_fetch`(`hash`,`url`,`ofetched`,`uploaded`) VALUES('%s','%s','1','1');",$hash,$data['cover']['source']);
+			mysql_query($sql);
+		}
+	}
+	else{
+		echo "no new conver\n";
+	}
+
+
+	$sql = sprintf("UPDATE members set time_info_fetched='%s',avatar='%s',about='%s',awards='%s',bio='%s',birth='%s',cover='%s',likes_fb='%s',link_fb='%s',interests='%s',website='%s',username_fb='%s' where mid='%s';",$today,$avatar,$about,$awards,$bio,$birth,$cover,$likes_fb,$link_fb,$interests,$website,$username_fb,$memberid);
+	// echo $sql;
+	mysql_query($sql);
+
+	
+
 }
 
 // 批量某个人的所有fb未存储的新图
@@ -510,55 +748,87 @@ function strmid($html,$before,$after){
 	return mb_substr($html,$index_before,$index_after-$index_before,'utf8');
 }
 
-function upload_toyoupai($hash='',$iso=0){
-	
-	if(!$hash){
-		$hash='0d3838d09d204cb04b4d2687b8bea806';
-	}
+function upload_api($path,$file_name,$space='fbgirls',$reset=0){
+
+	echo "by api\n";
 	static $upyun=null;
-	if(!$upyun){
-		require './class/upyun.class.php';
-		$upyun = new UpYun('fbgirls', 'scriptupload', 'scriptupload', UpYun::ED_TELECOM);	
+	if(!$upyun||$reset){
+		require_once('./class/upyun.class.php');
+		$upyun = new UpYun($space, 'scriptupload', 'scriptupload', UpYun::ED_TELECOM);	
 	}
-	$file_name='./data/images/'.$hash.'.jpg';
-	$fh = @fopen($file_name, 'rb');
-	if(!$fh){
-		echo "can not find the download file\n";
-		return false;
-	}
-	$folder='n';
-	if($iso) $folder='o';
-	$len=4;
-	$index=0;
-	$name=array();
-	while (true) {
-		if($sub=substr($hash, $index*$len,$len)){
-			$name[]=$sub;	
-			$index++;
-		}
-		else{
-			break;
-		}
-	}
-	$name=implode('/', $name);
-	$path=sprintf("/%s/%s.jpg",$folder,$name);
-	
 	try{
+		$fh = @fopen($file_name, 'rb');
+		if(!$fh){
+			echo "can not find the download file\n";
+			return false;
+		}
 		$rsp = $upyun->writeFile($path, $fh, true);   // 上传图片，自动创建目录
 		if(!$rsp){
 			echo "can not upload file\n";
 			return false;
 		}
-		echo "file is uploaded\n";
+		echo 'succeed uploaded'."\n";
+		return true;
 	}
 	catch(Exception $ex){
-		
+		echo sprintf("error:%s\n",$ex);
+		echo "try reconnect api\n";
+		echo "exit with error 2";
+		exit();//重新启动当前进程
+		$upyun=null;
+
+		return upload_api($path,$file_name,'fbgrils',true);
+	}
+}
+function upload_ftp($path,$file_name,$space,$reset=0){
+	echo "by ftp\n";
+	static $conn_id=null;
+	if(!$conn_id||$reset){
+		$conn_id&&ftp_close($conn_id);
+		$conn_id=null;
+		$conn_id = ftp_connect("v1.ftp.upyun.com",21,180);
+		// if($space=='')
+		if($conn_id&&!ftp_login($conn_id, "scriptupload/".$space, "scriptupload")){
+			// var_dump($conn_id);
+			echo "failed to connect ftp\n";
+			sleep(2);
+			return upload_ftp($path,$file_name,$space,true);
+			// return false;
+		}
+	}
+	if ($conn_id&&ftp_put($conn_id, $path, $file_name, FTP_BINARY)) {
+		$conn_id=null;
+		echo "file is uploaded\n";
+		return true;
+	} else {
+		echo "can not upload file\n";
+		echo "try reconnect ftp\n";
+
+		return upload_ftp($path,$file_name,$space,true);
+		// return false;
+	}
+
+}
+
+function upload_toyoupai($hash='',$iso='n',$space='fbgrils'){
+	
+	if(!$hash){
+		$hash='d1149425baa81d5919cb598176ecbb92';
 	}
 	
-	return true;
-
+	$file_name='./data/images/'.$hash.'.jpg';
 	
-
+	
+	$path=sprintf("/%s%s",$iso,get_upyun_name($hash));
+	// var_dump($path,$file_name);exit();
+	// upload_api($path,$file_name);
+	if(upload_api($path,$file_name,$space)){
+		echo sprintf("http://%s.b0.upaiyun.com%s\n",$space,$path);	
+		return true;
+	}
+	echo "failed to upload\n";
+	
+	
 }
 
 // 4、抓取图片，打马赛克 ，上传
@@ -580,9 +850,10 @@ function download_mark_upload(){
 		}
 
 	}
-	
+	$break=false;
 	while (true) {
-		$sql = sprintf("SELECT * from images_fetch where uploaded=0 order by id asc limit %s,%s;",$index*$page_num,$page_num);
+		if($break) break;
+		$sql = sprintf("SELECT * from images_fetch where uploaded=0 order by `hash` asc limit %s,%s;",$index*$page_num,$page_num);
 		$data=mysql_get_rows($sql);
 		if($data){
 			foreach ($data as $row) {
@@ -602,7 +873,11 @@ function download_mark_upload(){
 					}
 					else{
 						echo "is a maskable image \n";
-						$img = imagecreatefromstring($image_data);
+						$img = @imagecreatefromstring($image_data);
+						if(!$img){
+							echo "is not a ok image \n";
+							continue;
+						}
 						$width=imagesx($img);
 						$height=imagesy($img);
 						$dst_x=abs(ceil($width-$width_mask-2));
@@ -615,20 +890,22 @@ function download_mark_upload(){
 							echo sprintf("cannot make mask\n");
 						}
 					}
-					// echo "begin upload\n";
-					// $rst = upload_toyoupai($row['hash']);
-					// unlink($file_name);
-					// $uploaded=1;
-					// if(!$rst) $uploaded=2;//上传失败
-					// $sql  = sprintf("UPDATE images_fetch set uploaded=%s where hash='%s';",$uploaded,$row['hash']);
-					// mysql_query($sql);
-					// $sql  = sprintf("UPDATE photos set uploaded=%s where hash='%s';",$uploaded,$row['hash']);
-					// mysql_query($sql);
+					echo "begin upload\n";
+					$rst = upload_toyoupai($row['hash']);
+					unlink($file_name);
+					$uploaded=1;
+					if(!$rst) $uploaded=2;//上传失败
+					// $uploaded=3;//ftp later
+					$sql  = sprintf("UPDATE images_fetch set uploaded=%s where hash='%s';",$uploaded,$row['hash']);
+					mysql_query($sql);
+					$sql  = sprintf("UPDATE photos set uploaded=%s where hash='%s';",$uploaded,$row['hash']);
+					mysql_query($sql);
 
 				}
 				else{
-					echo sprintf("image %s cannot get data\n",$row['id']);
-					continue;
+					echo sprintf("image %s cannot get data\npls check the goagent",$row['id']);
+					$break=true;
+					break;
 				}
 				echo "\n-------------------------------------\n";
 				// $index++;
@@ -647,7 +924,53 @@ function download_mark_upload(){
 	}
 
 }
-// 
+
+function mv_file_too_hash(){
+	$path="./data/images";
+	$fobj=opendir($path);
+	while ($file=readdir($fobj)) {
+		$file=$path.'/'.$file;
+		if(is_file($file)){
+			$pathinfo=pathinfo($file);
+			$hash=$pathinfo['filename'];
+			$target=get_upyun_name($hash);
+			$target='./data/images/ftp'.$target;
+			echo sprintf("move %s to %s\n",$file,$target);
+			mv_file($file,$target);
+		}
+		
+	}
+
+}
+
+function mv_file($source,$target){
+	
+	$pathinfo=pathinfo($target);
+	$dirname=$pathinfo['dirname'];
+	
+	@mkdir($dirname,0700,true);
+	// var_dump($dirname);return;
+	copy($source,$target);
+	unlink($source);
+	return true;
+} 
+
+function get_upyun_name($hash){
+	$len=4;
+	$index=0;
+	$name=array();
+	while (true) {
+		if($sub=substr($hash, $index*$len,$len)){
+			$name[]=$sub;	
+			$index++;
+		}
+		else{
+			break;
+		}
+	}
+	$name=implode('/', $name);
+	return sprintf("/%s.jpg",$name);
+}
 
 
 

@@ -1,0 +1,459 @@
+  [90mwatching[0m /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  [90mcompiled[0m two.css
+  [90mwatching[0m stylus/two.styl
+  [90mwatching[0m /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  [90mcompiled[0m two.css
+  [90mwatching[0m stylus/two.styl
+  [90mcompiled[0m two.css
+  [90mcompiled[0m two.css
+  [90mcompiled[0m two.css
+  [90mwatching[0m /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  [90mcompiled[0m two.css
+  [90mwatching[0m stylus/two.styl
+  [90mcompiled[0m two.css
+  [90mcompiled[0m two.css
+  [90mwatching[0m /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  [90mcompiled[0m style.css
+  [90mwatching[0m stylus/style.styl
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+ParseError: stylus/style.styl:6
+   2| 	max-width: 80rem;
+   3| }
+   4| .header{
+   5| 	height:
+ > 6| }
+   7| 
+
+unexpected "outdent"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:773:32)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.parse (/usr/local/lib/node_modules/stylus/lib/parser.js:232:25)
+    at Renderer.render (/usr/local/lib/node_modules/stylus/lib/renderer.js:74:22)
+    at /usr/local/lib/node_modules/stylus/bin/stylus:601:15
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+  [90mcompiled[0m style.css
+ParseError: stylus/style.styl:7
+   3| }
+   4| .header{
+   5| 	height:100px;
+   6| 	background-color:
+ > 7| }
+   8| 
+
+unexpected "outdent"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:773:32)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.parse (/usr/local/lib/node_modules/stylus/lib/parser.js:232:25)
+    at Renderer.render (/usr/local/lib/node_modules/stylus/lib/renderer.js:74:22)
+    at /usr/local/lib/node_modules/stylus/bin/stylus:601:15
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+ParseError: stylus/style.styl:7
+   3| }
+   4| .header{
+   5| 	height:100px;
+   6| 	background-color#343131:
+ > 7| }
+   8| 
+
+expected "indent", got "outdent"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.expect (/usr/local/lib/node_modules/stylus/lib/parser.js:283:12)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:796:12)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:803:21)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+ParseError: stylus/style.styl:7
+   3| }
+   4| .header{
+   5| 	height:100px;
+   6| 	background-color:#343131:
+ > 7| }
+   8| 
+
+expected "indent", got "outdent"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.expect (/usr/local/lib/node_modules/stylus/lib/parser.js:283:12)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:796:12)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:803:21)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+ParseError: stylus/style.styl:7
+   3| }
+   4| .header{
+   5| 	height:100px;
+   6| 	background-color:#343131;
+ > 7| 	}
+   8| 
+
+unexpected "outdent"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:773:32)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.parse (/usr/local/lib/node_modules/stylus/lib/parser.js:232:25)
+    at Renderer.render (/usr/local/lib/node_modules/stylus/lib/renderer.js:74:22)
+    at /usr/local/lib/node_modules/stylus/bin/stylus:601:15
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15)
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+ParseError: stylus/style.styl:28
+   24| 	}
+   25| 	.nav{
+   26| 		float:right;
+   27| 		li{
+ > 28| 		
+   29| 		}
+   30| 	}
+   31| }
+
+expected "}", got "newline"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.expect (/usr/local/lib/node_modules/stylus/lib/parser.js:283:12)
+    at Parser.interpolate (/usr/local/lib/node_modules/stylus/lib/parser.js:1294:14)
+    at Parser.property (/usr/local/lib/node_modules/stylus/lib/parser.js:1317:22)
+    at Parser.ident (/usr/local/lib/node_modules/stylus/lib/parser.js:1269:25)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:737:26)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:803:21)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+RangeError: stylus/style.styl:5
+   1| header_height=100px
+   2| white=#fff
+   3| blue=#398CCE
+   4| blur(){
+ > 5|   -webkit-filter: blur(argument);
+   6|   -moz-filter: blur(argument);
+   7|   -o-filter: blur(argument);
+   8|   -ms-filter: blur(argument);
+
+Maximum stylus call stack size exceeded
+    at blur() (stylus/style.styl:5)
+    at ".backblur" (stylus/style.styl:64)
+
+    at Evaluator.visitCall (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:468:11)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitExpression (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:620:26)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitProperty (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:659:22)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.eval (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:1146:23)
+RangeError: stylus/style.styl:5
+   1| header_height=100px
+   2| white=#fff
+   3| blue=#398CCE
+   4| blur(argument){
+ > 5|   -webkit-filter: blur(argument);
+   6|   -moz-filter: blur(argument);
+   7|   -o-filter: blur(argument);
+   8|   -ms-filter: blur(argument);
+
+Maximum stylus call stack size exceeded
+    at blur() (stylus/style.styl:5)
+    at ".backblur" (stylus/style.styl:64)
+
+    at Evaluator.visitCall (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:468:11)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitExpression (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:620:26)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitProperty (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:659:22)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.eval (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:1146:23)
+RangeError: stylus/style.styl:5
+   1| header_height=100px
+   2| white=#fff
+   3| blue=#398CCE
+   4| blur(argument){
+ > 5|   -webkit-filter: blur(argument);
+   6|   -moz-filter: blur(argument);
+   7|   -o-filter: blur(argument);
+   8|   -ms-filter: blur(argument);
+
+Maximum stylus call stack size exceeded
+    at blur() (stylus/style.styl:5)
+    at ".backblur" (stylus/style.styl:64)
+
+    at Evaluator.visitCall (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:468:11)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitExpression (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:620:26)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitProperty (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:659:22)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.eval (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:1146:23)
+RangeError: stylus/style.styl:5
+   1| header_height=100px
+   2| white=#fff
+   3| blue=#398CCE
+   4| blur(argument){
+ > 5|   -webkit-filter: blur(argument);
+   6|   -moz-filter: blur(argument);
+   7|   -o-filter: blur(argument);
+   8|   -ms-filter: blur(argument);
+
+Maximum stylus call stack size exceeded
+    at blur() (stylus/style.styl:5)
+    at ".backblur" (stylus/style.styl:64)
+
+    at Evaluator.visitCall (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:468:11)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitExpression (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:620:26)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.visitProperty (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:659:22)
+    at Evaluator.Visitor.visit (/usr/local/lib/node_modules/stylus/lib/visitor/index.js:28:40)
+    at Evaluator.visit (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:157:18)
+    at Evaluator.eval (/usr/local/lib/node_modules/stylus/lib/visitor/evaluator.js:1146:23)
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+ParseError: stylus/style.styl:19
+   15| 
+   16| .row {
+   17| 	max-width: 80rem;
+   18| }
+ > 19| header{
+   20| 	
+   21| 	background-color:#343131;
+   22| }
+
+unexpected "}"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:773:32)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:803:21)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:737:26)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:803:21)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.ident (/usr/local/lib/node_modules/stylus/lib/parser.js:1261:25)
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+ParseError: stylus/style.styl:87
+   83| 	background-color:white;
+   84| 	height:50rem;
+   85| 	.right-panel{
+   86| 		background-color:black:
+ > 87| 	}
+   88| }
+   89| 
+   90| 
+
+expected "indent", got "outdent"
+
+    at Parser.error (/usr/local/lib/node_modules/stylus/lib/parser.js:255:11)
+    at Parser.expect (/usr/local/lib/node_modules/stylus/lib/parser.js:283:12)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:796:12)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+    at Parser.block (/usr/local/lib/node_modules/stylus/lib/parser.js:803:21)
+    at Parser.selector (/usr/local/lib/node_modules/stylus/lib/parser.js:1363:24)
+    at Parser.stmt (/usr/local/lib/node_modules/stylus/lib/parser.js:755:27)
+    at Parser.statement (/usr/local/lib/node_modules/stylus/lib/parser.js:645:21)
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mwatching[0m /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  [90mcompiled[0m style.css
+  [90mwatching[0m stylus/style.styl
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mwatching[0m /usr/local/lib/node_modules/stylus/lib/functions/index.styl
+  [90mcompiled[0m style.css
+  [90mwatching[0m stylus/style.styl
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
+  [90mcompiled[0m style.css
