@@ -668,10 +668,9 @@ function db_query($sql){
 }
 
 function mysql_get_instance(){
-	
 	$db=null;
 	if(!$db){
-		$db = @mysql_connect('127.0.0.1','root','root') or die("Database error"); 
+		$db = @mysql_connect('127.0.0.1','crawl','crawl') or die("Database error"); 
 		@mysql_select_db('xnc_fbmm', $db); 
 		mysql_query("SET NAMES utf8");  
 
@@ -973,7 +972,9 @@ function get_upyun_name($hash){
 }
 
 
-
+function get_yahoo_list(){
+	// https://tw.celebrity.yahoo.com/_xhr/mediamosaiclistlpca/?list_source=&mod_id=mediamosaiclistlpca&list_id=41cd0fcb-3695-4a3d-870e-e21dff579b81&list_style=&apply_filter=&filters=&show_author=0&show_date=1&show_popup=0&show_views=&show_tags=0&template=mosaic_8u_frame&title_length=35&show_provider=1&content_id=4be3067f-b1bb-37bc-a737-cb6551f2acf8&desc_length=165&popup_desc_length=&cache_ttl=TTL_LEVEL_30&instanceUuid=ad3e2f2e-68c3-356e-aeb9-69d9b3af1713&list_start=71&list_count=10
+}
 
 
 
